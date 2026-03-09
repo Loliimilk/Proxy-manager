@@ -19,14 +19,24 @@ function App() {
   const passwordRef = useRef<HTMLInputElement>(null);
   const [proxies, setProxies] = useState<proxyElements[]>([]);
 
-
-
 const childPorn = () =>{
 
   const host = hostRef.current?.value || '';
   const port = portRef.current?.value || '';
   const login = loginRef.current?.value || '';
   const password = passwordRef.current?.value || '';
+
+
+
+  if (!host || !port || !login || !password){
+    alert ('введи все значения')
+  return <p>Введи все значения</p>;
+};
+
+  if (Number(port) < 1 || Number(port) > 65535){
+    alert ('Порт должен быть между 1 и 65535')
+    return
+  }
 
   const newProxy : proxyElements = {
   host,
